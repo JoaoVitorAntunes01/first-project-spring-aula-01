@@ -14,17 +14,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PortalController {
     
-    @GetMapping("/Portal")
+    @GetMapping("/portal")
     public String abrirPortal() {
         return "portal";
     }
     
-    @GetMapping("/Servicos")
+    @GetMapping("/servicos")
     public String abrirServicos() {
         return "servicos";
     }
     
-    @GetMapping("/Contato")
+    @GetMapping("/contato")
     public String abrirContato() {
         return "contato";
     }
