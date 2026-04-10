@@ -45,4 +45,54 @@ public class FuncionarioDAO {
         }
         return lista;
     }
+    
+    public int totalFuncionarios() {
+        int total = 0;
+        try {
+            Connection conn = Conexao.conectar();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            
+            stmt = conn.prepareStatement("select count(*) as total from funcionarios");
+            rs = stmt.executeQuery();
+            
+            if(rs.next()) {
+                total = rs.getInt("total");
+                
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return total;
+    }
+    
+    
+    
+     public List<FuncionarioBean> listarFuncionariosTecnologia() {
+        List<FuncionarioBean> lista = new ArrayList();
+        try {
+            Connection conn = Conexao.conectar();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            
+            stmt = conn.prepareStatement("select * from funcionario where departamento ='Tecnologia'");
+            rs = stmt.executeQuery();
+            
+             while(rs.next()) {
+                FuncionarioBean funcionariosTec = new FuncionarioBean();
+                funcionariosTec.setId(rs.getInt("id"));
+                funcionariosTec.setNome(rs.getString("nome"));
+                funcionariosTec.setCargo(rs.getString("cargo"));
+                funcionariosTec.setDepartamento(rs.getString("departamento"));
+                funcionariosTec.setEmail(rs.getString("email"));
+                funcionariosTec.setDataContratacao(rs.getDate("data_contratacao"));
+                
+                lista.add(funcionariosTec);
+            }     
+                    
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return lista;
+    }
 }

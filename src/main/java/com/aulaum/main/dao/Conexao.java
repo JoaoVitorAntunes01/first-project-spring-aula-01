@@ -14,9 +14,9 @@ import java.sql.DriverManager;
 public class Conexao {
     private static final String url = "jdbc:mysql://localhost:3607/empresa_db";
     private static final String usuario = "root";
-    private static final String senha = "1234";
+    private static final String senha = "";
     
-    public Connection conectar () {
+    public static Connection conectar () {
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url, usuario, senha);
